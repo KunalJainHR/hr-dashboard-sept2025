@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly HR Dashboard | September 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Plugin for displaying numbers on charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%; 
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+        .kpi-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #4a5568;
+            margin-top: 0.5rem;
+        }
+        .data-table-container {
+            overflow-x: auto;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .data-table th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #4a5568;
+            text-transform: uppercase;
+        }
+        .data-table tr:hover {
+            background-color: #f1f5f9;
+        }
+        .highlight-row {
+            background-color: #fff3cd; 
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#003f5c] mb-2">HR Team Dashboard</h1>
+            <p class="text-lg text-slate-600">Regional Performance Review and Analytics | September 2025</p>
+            <p class="text-sm text-slate-500 mt-2">Overall Goal: Attrition Decline -60% | Focus: Reducing Vacancy and Improving TAT</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <!-- PAGE 1: ATTRITION & MRF TRENDLINE (Table & Chart Side-by-Side) -->
+            <section>
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Attrition & MRF Trendline Overview</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                     <div class="kpi-card md:col-span-1">
+                        <div class="kpi-number text-[#ff6361]">66</div>
+                        <div class="kpi-label">MRF Count (Sept 2025)</div>
+                    </div>
+                    <div class="kpi-card md:col-span-1">
+                        <div class="kpi-number text-[#58508d]">-52%</div>
+                        <div class="kpi-label">MRF Decline Trend (Goal: -60%)</div>
+                    </div>
+                    <div class="kpi-card md:col-span-1">
+                        <div class="kpi-number text-[#bc5090]">14</div>
+                        <div class="kpi-label">Overall Avg TAT (Days)</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- MRF TABLE -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-4 text-center">MRF Trendline (Count Vs Decline %age)</h3>
+                        <div class="data-table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Month</th>
+                                        <th>Count</th>
+                                        <th>Decline %age Trend</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>April 2025</td><td>67</td><td>Launched in</td></tr>
+                                    <tr><td>May 2025</td><td>138</td><td>Primary number</td></tr>
+                                    <tr><td>June 2025</td><td>121</td><td>-12%</td></tr>
+                                    <tr><td>July 2025</td><td>117</td><td>-15%</td></tr>
+                                    <tr><td>August 2025</td><td>78</td><td>-43%</td></tr>
+                                    <tr class="bg-blue-50"><td><strong>September 2025</strong></td><td><strong>66</strong></td><td><strong>-52%</strong></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                     <!-- MRF CHART (Side-by-Side) -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-1 p-2 text-center">Monthly Attrition Trend Visualization</h3>
+                        <p class="text-slate-600 text-center mb-4 max-w-2xl mx-auto">Tracking the overall reduction in manpower requisitions since peak in May.</p>
+                        <div class="chart-container">
+                            <canvas id="mrfTrendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <hr>
+
+            <!-- PAGE 2: HR PERFORMANCE SCORECARD AND TAT (Side-by-Side) -->
+            <section>
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">HR Performance Scorecard: MRF vs TAT</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- MRF TABLE -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-1 text-center">HR-wise MRF Status (Vacant Positions)</h3>
+                        <p class="text-slate-600 text-center mb-4 max-w-2xl mx-auto">Total Open Positions: 87 | Total Vacant: 32. Total vacant positions must be actively managed to improve recruitment efficiency.</p>
+                        <div class="data-table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Assigned HR</th>
+                                        <th>Total Positions</th>
+                                        <th>Vacant</th>
+                                        <th>Hold/Invalid</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-red-50"><td>Shruti</td><td>21</td><td>10</td><td>1</td></tr>
+                                    <tr class="bg-red-50"><td>Abhishek</td><td>14</td><td>7</td><td>2</td></tr>
+                                    <tr><td>Bishu</td><td>6</td><td>2</td><td>0</td></tr>
+                                    <tr class="bg-red-50"><td>Himanshu</td><td>18</td><td>8</td><td>1</td></tr>
+                                    <tr><td>Josna</td><td>8</td><td>1</td><td>0</td></tr>
+                                    <tr class="highlight-row"><td><strong>Kunal</strong></td><td><strong>4</strong></td><td><strong>0</strong></td><td><strong>0</strong></td></tr>
+                                    <tr class="bg-orange-50"><td>Faizal</td><td>4</td><td>2</td><td>1</td></tr>
+                                    <tr><td>Shaily</td><td>12</td><td>2</td><td>0</td></tr>
+                                    <tr class="bg-blue-50 font-bold"><td>Total</td><td>87</td><td>32</td><td>5</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- TAT CHART (Side-by-Side) -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-1 text-center">Avg TAT vs. Assigned HR (in Days)</h3>
+                        <p class="text-slate-600 text-center mb-4 max-w-2xl mx-auto">Overall TAT for the team is 14 Days, showing continued efficiency improvement.</p>
+                        <div class="chart-container">
+                            <canvas id="avgTatChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Removed Key Note: TAT Performance Box -->
+            </section>
+
+            <hr>
+            
+            <!-- PAGE 3: DEPARTMENTAL BREAKDOWN (Table and Chart Side-by-Side) -->
+            <section>
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Deep Dive: Departmental Vacancy and Risk</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- DEPARTMENTAL TABLE -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-1 text-center">Vacant Vs Closed - Department Wise Breakdown</h3>
+                        <p class="text-slate-600 text-center mb-4 max-w-2xl mx-auto">Total Vacant positions stand at 32. Key operational departments account for the highest risk.</p>
+                        <div class="data-table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Requisition Department</th>
+                                        <th>Vacant</th>
+                                        <th>Closed</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Engineering</td><td>2</td><td>4</td><td>6</td></tr>
+                                    <tr><td>Food and Beverage Service</td><td>0</td><td>8</td><td>8</td></tr>
+                                    <tr class="bg-rose-50 font-bold"><td>Food Production</td><td>10</td><td>11</td><td>21</td></tr>
+                                    <tr class="bg-rose-50 font-bold"><td>Front Office</td><td>11</td><td>14</td><td>25</td></tr>
+                                    <tr class="bg-rose-50 font-bold"><td>Housekeeping</td><td>9</td><td>11</td><td>20</td></tr>
+                                    <tr><td>Purchase</td><td>0</td><td>1</td><td>1</td></tr>
+                                    <tr class="font-bold bg-gray-100"><td>Grand Total</td><td>32</td><td>49</td><td>81</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- VACANCY CHART (Side-by-Side) -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-1 text-center">Vacant Positions by Department</h3>
+                        <p class="text-slate-600 text-center mb-4 max-w-2xl mx-auto">Visualization of the 32 open vacant roles across departments.</p>
+                        <div class="chart-container">
+                            <canvas id="vacancyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Removed Departmental Achievements Highlight -->
+                
+            </section>
+            
+            <hr>
+
+            <!-- PAGE 4: CORRECTIVE ACTION, ACHIEVEMENTS, & RECOMMENDATIONS -->
+            <section>
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Corrective Action & Key Updates</h2>
+
+                <!-- HR PROCESS & STRATEGIC ACHIEVEMENTS -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4 text-center text-indigo-700">HR Process & Strategic Achievements</h3>
+                    <p class="text-slate-600 text-center mb-6 max-w-2xl mx-auto">These achievements demonstrate continuous process improvement and strategic gains across recruitment and employee welfare.</p>
+
+                    <div class="flex flex-col space-y-4 max-w-xl mx-auto">
+                        
+                        <!-- Kunal's Achievement -->
+                        <div class="flex p-4 bg-lime-100 border-l-4 border-lime-500 rounded-lg shadow-md items-center">
+                            <div class="flex-shrink-0 text-3xl mr-4 text-lime-600">🎯</div>
+                            <div>
+                                <p class="font-bold text-lg text-lime-800">Perfect Closure Performance</p>
+                                <p class="text-sm text-gray-700">**Kunal** achieved a 100% closure rate this month by successfully closing all 4 assigned requisitions with **0 outstanding vacancies**.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex p-4 bg-yellow-100 border-l-4 border-yellow-500 rounded-lg shadow-md items-center">
+                            <div class="flex-shrink-0 text-3xl mr-4 text-yellow-600">🥇</div>
+                            <div>
+                                <p class="font-bold text-lg text-yellow-800">Recruitment Efficiency Leader</p>
+                                <p class="text-sm text-gray-700">**Josna** and **Bishu** achieved the **Lowest Average TAT (12 Days)**, setting the gold standard for vacancy closure speed this month.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 bg-purple-100 border-l-4 border-purple-500 rounded-lg shadow-md items-center">
+                            <div class="flex-shrink-0 text-3xl mr-4 text-purple-600">⚙️</div>
+                            <div>
+                                <p class="font-bold text-lg text-purple-800">Operational Oversight: Staff Welfare</p>
+                                <p class="text-sm text-gray-700">Successfully conducted a comprehensive **Internal Audit of Staff Meals and Staff Accommodation** quality and standards.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 bg-green-100 border-l-4 border-green-500 rounded-lg shadow-md items-center">
+                            <div class="flex-shrink-0 text-3xl mr-4 text-green-600">💰</div>
+                            <div>
+                                <p class="font-bold text-lg text-green-800">Resource Optimization</p>
+                                <p class="text-sm text-gray-700">Audit led to the **Identification of Surplus Mattresses and Beds** in staff accommodations, allowing for resource reallocation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex p-4 bg-blue-100 border-l-4 border-blue-500 rounded-lg shadow-md items-center">
+                            <div class="flex-shrink-0 text-3xl mr-4 text-blue-600">✅</div>
+                            <div>
+                                <p class="font-bold text-lg text-blue-800">Compliance & Security Upgrade</p>
+                                <p class="text-sm text-gray-700">Successfully implemented **Springverify** as the official background verification partner, enhancing hiring security and compliance.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- END HR PROCESS & STRATEGIC ACHIEVEMENTS -->
+
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-center">Case Study: Operational Disruption Summary</h3>
+                    <div class="p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded-r-lg">
+                        <p class="font-bold">Attrition Due to Managerial Mismanagement of Leave</p>
+                        <p class="text-sm mt-1">
+                            A highly valuable employee was granted a *15-day informed leave* by the Hotel Manager (HM). Due to *lack of communication and extended absence* beyond the agreed period, the HM hired a replacement to mitigate operational risk.
+                        </p>
+                        <p class="text-sm mt-2">
+                            Upon the original employee's intimation to return, *no open roles were available*, leading to the employee's departure. This incident highlights a severe failure in the leave management process and directly resulted in *avoidable attrition* due to poor communication between the HM and the absent employee.
+                        </p>
+                    </div>
+                </div>
+                
+            </section>
+
+            <hr>
+
+            <!-- PAGE 5: REWARDS & RECOGNITION (Employee Engagement Photos) -->
+            <section>
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Rewards & Recognition - PAN India</h2>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <p class="text-slate-600 text-center mb-8 max-w-2xl mx-auto">Celebrating our team's successes and dedication in September 2025. Below are highlights from recent employee engagement events.</p>
+                    
+                    <!-- PHOTO GRID - Adjusted for 8 photos (4 columns, 2 rows) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Photo 1: Existing Upload -->
+                        <div class="relative overflow-hidden rounded-lg shadow-lg aspect-square">
+                            <img src="https://uploads.onecompiler.io/43yxwtpu6/43yxwbv7r/WhatsApp%20Image%202025-09-25%20at%2011.04.21%20PM%20(3).jpeg" alt="" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white text-xs p-2"></div>
+                        </div>
+
+                        <!-- Photo 2: Existing Upload -->
+                        <div class="relative overflow-hidden rounded-lg shadow-lg aspect-square">
+                            <img src="https://uploads.onecompiler.io/43yxwtpu6/43yxwbv7r/IMG_6525.JPG" alt="" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white text-xs p-2"></div>
+                        </div>
+
+                        <!-- Photo 3: Existing External Link -->
+                        <div class="relative overflow-hidden rounded-lg shadow-lg aspect-square">
+                            <img src="https://uploads.onecompiler.io/43yxwtpu6/43yxwbv7r/Screenshot%202025-10-07%20174058.png" alt="" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white text-xs p-2"></div>
+                        </div>
+
+                        <!-- Photo 4: New External Link -->
+                        <div class="relative overflow-hidden rounded-lg shadow-lg aspect-square">
+                            <img src="https://uploads.onecompiler.io/43yxwtpu6/43yxwbv7r/Screenshot%202025-10-07%20174210.png" alt="" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white text-xs p-2"></div>
+                        </div>
+
+                        <!-- Photo 5: NEW LINK ADDED (Replacing Placeholder 5) -->
+                         <div class="relative overflow-hidden rounded-lg shadow-lg aspect-square">
+                            <img src="https://uploads.onecompiler.io/43yxwtpu6/43yxwbv7r/WhatsApp%20Image%202025-09-26%20at%209.10.14%20AM%20(1)%20(1).jpeg" alt="" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white text-xs p-2"></div>
+                        </div>
+
+                        <!-- Placeholder for Photo 6 -->
+                        <div class="relative overflow-hidden rounded-lg shadow-lg aspect-square">
+                            <img src="https://uploads.onecompiler.io/43yxwtpu6/43yxwbv7r/WhatsApp%20Image%202025-09-30%20at%202.08.18%20PM%20(1).jpeg" alt="" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white text-xs p-2"></div>
+                        </div>
+                        
+                        <!-- Placeholder for Photo 7 -->
+                        <div class="relative overflow-hidden rounded-lg shadow-lg aspect-square">
+                            <img src="https://uploads.onecompiler.io/43yxwtpu6/43yxwbv7r/1758269873369.jpeg" alt="" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white text-xs p-2"></div>
+                        </div>
+
+                         <!-- Placeholder for Photo 8 -->
+                        <div class="relative overflow-hidden rounded-lg shadow-lg aspect-square">
+                            <img src="https://uploads.onecompiler.io/43yxwtpu6/43yxwbv7r/1758770884530.jpeg" alt="" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white text-xs p-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr>
+
+            <!-- NEW THANK YOU SECTION -->
+            <section class="text-center py-8">
+                <h2 class="text-3xl font-extrabold text-[#003f5c] mb-6">Thank You</h2>
+                <div class="bg-white rounded-lg shadow-xl p-8 max-w-3xl mx-auto">
+                    <p class="text-xl font-medium text-slate-700 mb-4">
+                        "HR is not a thing we do. It's the thing that runs our business.”
+                    </p>
+                    <p class="text-md font-semibold text-slate-500">— Steve Wynn</p>
+                    <p class="mt-6 text-lg font-bold text-[#003f5c]">Thank you for your continued dedication and commitment to driving our business forward.</p>
+                </div>
+            </section>
+            <!-- END NEW THANK YOU SECTION -->
+
+        </main>
+    </div>
+    
+    <!-- CHART JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const CHART_COLORS = {
+                red: '#ff6361',
+                purple: '#58508d',
+                pink: '#bc5090',
+                orange: '#ffa600',
+                blue: '#003f5c',
+                grey: '#cbd5e1'
+            };
+            
+            const chartFont = {
+                family: 'Inter',
+                size: 12
+            };
+            
+            // Register the datalabels plugin globally for use in charts
+            Chart.register(ChartDataLabels);
+
+            // 1. MRF Trendline Chart (Line)
+            const mrfTrendCtx = document.getElementById('mrfTrendChart').getContext('2d');
+            const mrfTrendData = {
+                labels: ['April 2025', 'May 2025', 'June 2025', 'July 2025', 'August 2025', 'September 2025'],
+                datasets: [{
+                    label: 'MRF Count',
+                    data: [67, 138, 121, 117, 78, 66],
+                    borderColor: CHART_COLORS.blue,
+                    backgroundColor: 'rgba(0, 63, 92, 0.2)',
+                    fill: false,
+                    tension: 0.2,
+                    pointRadius: 6,
+                    pointBackgroundColor: CHART_COLORS.blue
+                }]
+            };
+
+            new Chart(mrfTrendCtx, {
+                type: 'line',
+                data: mrfTrendData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false },
+                        // DATALABELS CONFIGURATION TO SHOW NUMBERS
+                        datalabels: {
+                            align: 'top', 
+                            anchor: 'center', 
+                            offset: 12, 
+                            color: CHART_COLORS.blue,
+                            font: {
+                                weight: 'bold',
+                                size: 14
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            max: 160, // Set max Y-axis value to 160 to ensure 138 is visible
+                            title: { display: true, text: 'MRF Count', font: chartFont } 
+                        },
+                        x: { ticks: { font: chartFont } }
+                    }
+                }
+            });
+
+
+            // 2. Avg TAT Chart (Bar/Line Mix)
+            const avgTatCtx = document.getElementById('avgTatChart').getContext('2d');
+            const avgTatData = {
+                labels: ['Shruti', 'Abhishek', 'Bishu', 'Himanshu', 'Josna', 'Kunal', 'Faizal', 'Shaily'],
+                datasets: [{
+                    label: 'Avg TAT (Days)',
+                    data: [19, 13, 12, 15, 12, 21, 36, 17],
+                    // Highlight the lowest (pink) and highest (red) TATs
+                    backgroundColor: [
+                        CHART_COLORS.blue, CHART_COLORS.blue, CHART_COLORS.pink, CHART_COLORS.blue, 
+                        CHART_COLORS.pink, CHART_COLORS.blue, CHART_COLORS.red, CHART_COLORS.blue
+                    ],
+                    borderRadius: 4,
+                },
+                {
+                    label: 'Team Avg (14 Days)',
+                    data: [14, 14, 14, 14, 14, 14, 14, 14],
+                    borderColor: CHART_COLORS.orange,
+                    backgroundColor: 'transparent',
+                    type: 'line',
+                    pointRadius: 0,
+                    borderDash: [5, 5],
+                    borderWidth: 2,
+                }]
+            };
+
+            new Chart(avgTatCtx, {
+                type: 'bar',
+                data: avgTatData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: true, position: 'bottom' },
+                        // DATALABELS CONFIGURATION TO SHOW NUMBERS ON BARS
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            offset: 5,
+                            color: CHART_COLORS.blue,
+                            font: {
+                                weight: 'bold'
+                            },
+                            formatter: function(value, context) {
+                                // Only show labels for the bar dataset (index 0)
+                                return context.datasetIndex === 0 ? value : null;
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: 40, title: { display: true, text: 'Avg TAT (Days)', font: chartFont } },
+                        x: { ticks: { font: chartFont } }
+                    }
+                }
+            });
+
+
+            // 3. Vacancy Chart (Doughnut/Pie)
+            const vacancyCtx = document.getElementById('vacancyChart').getContext('2d');
+            const vacancyData = {
+                // CORRECTED LABELS and DATA to align with Table 3.1 (Total 32 vacancies)
+                labels: ['Front Office (11)', 'Food Production (10)', 'Housekeeping (9)', 'Engineering (2)'],
+                datasets: [{
+                    data: [11, 10, 9, 2],
+                    backgroundColor: [CHART_COLORS.red, CHART_COLORS.pink, CHART_COLORS.purple, CHART_COLORS.blue],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                }]
+            };
+            new Chart(vacancyCtx, {
+                type: 'doughnut',
+                data: vacancyData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: chartFont,
+                                boxWidth: 20,
+                                padding: 20,
+                            }
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
